@@ -1,0 +1,42 @@
+Research Paper: http://modelai.gettysburg.edu/2013/cfr/cfr.pdf
+
+UTILITY
+    - Our net gain/loss per play.
+    - For example if we played rock and our opponent played paper then we would of had
+      utility of -1 since we lost, a utlity of 0 if we played paper, and +1 if we played 
+      scissors
+
+REGRET
+    - We regret actions that do not improve our utility. We regret taking an 
+      action resulting in utility of 0, but we reget taking a -1 action even more.
+    - To calculate reget we find the difference between an other action and the action
+      we actually took. Example below.(higher number = higher regret)
+      (This is diff from utility)
+    - In our example, we play rock and the opponent plays paper, so to calculate possible
+       regrets: (paper, paper) - (rock, paper) = 0 - (-1) = 1
+              : (scissors, paper) - (rock, paper) = +1 - (-1) = 2
+
+HOW MIGHT REGRET INFORM FUTURE PLAY
+    - Naturally one is more likely to choose plays that he regretted in the past
+    - However said person doesnt want to purely go by regret, because then he is easily
+      predictable
+    - We can accomplish this state is through REGRET MATCHING
+      THIS IS WHERE AN AGENTS ACTIONS ARE SELECTED PROPORTIONAL TO POSITIVE REGRETS
+
+CALCULATING CUMMULATIVE REGRET IN AN ARRAY STRUCT:
+    let regret = [0, 0, 0] in the form [rock, paper, scissors]
+    
+    ROUND ONE:
+        we choose rock and the opponent choose scissors:
+            reg = [0, 0, 0]
+
+    ROUND TWO:
+        we choose paper and the opponent chooses scissors:
+            reg = [2, 0, 1]
+
+    ROUND THREE: 
+        we choose scissors and the opponent chooses rock:
+            reg = [1, 2, 0]
+
+    CUMMULATIVE REGRET:
+        reg = mixed strategy of [3/6, 2/6, 2/6] for next round
